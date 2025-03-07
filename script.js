@@ -15,14 +15,14 @@ function addTodo() {
     todoList.push({ name, duedate });
 
     inputElementName.value = '';
-    inputElementDuedate.value = '';
+    inputElementDuedate.value = 'dd-mm-yyyy';
 
-    dispList(); // Update the display after adding a new item
+    dispList();
 }
 
 function dispList() {
     const todoContainer = document.querySelector('.js-todo-list');
-    todoContainer.innerHTML = ''; // Clear previous content
+    todoContainer.innerHTML = '';
 
     todoList.forEach((todo, index) => {
         const todoItem = document.createElement('div');
@@ -38,5 +38,5 @@ function dispList() {
 
 function deleteTodo(index) {
     todoList.splice(index, 1);
-    dispList(); // Update the list after deletion
+    dispList();
 }
