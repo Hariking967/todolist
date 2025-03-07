@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/Todolist1.html" }
+    { "source": "/", "destination": "/index.html" }
   ],
   "headers": [
     {
