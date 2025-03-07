@@ -20,23 +20,15 @@ function addTodo() {
     dispList();
 }
 
-function dispList() {
-    const todoContainer = document.querySelector('.js-todo-list');
-    todoContainer.innerHTML = '';
-
-    todoList.forEach((todo, index) => {
-        const todoItem = document.createElement('div');
-        todoItem.classList.add("todo-item");
-        todoItem.innerHTML = `
-            <div>${todo.name}</div>
-            <div>${todo.duedate || "No due date"}</div>
-            <button class="delete-todo-button" onclick="deleteTodo(${index});">Delete</button>
-        `;
-        todoContainer.appendChild(todoItem);
-    });
-}
-
-function deleteTodo(index) {
-    todoList.splice(index, 1);
-    dispList();
+function dispList()
+{
+    let disp = ``;
+    for (let i=0; i<todoList.length; i++)
+    {
+        disp += `
+            <div>${todoList[i].name}</div> 
+            <div>${todoList[i].duedate}</div>
+            `;
+    }
+    document.querySelector('.js-todo-list').innerHTML = disp;
 }
