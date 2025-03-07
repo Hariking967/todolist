@@ -1,27 +1,23 @@
-todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+let todoList = [];
 dispList();
 
-function addTodo()
- {
+function addTodo() {
     const inputElementName = document.querySelector('.js-name-input');
     const name = inputElementName.value;
     const inputElementDuedate = document.querySelector('.js-due-date-input');
     const duedate = inputElementDuedate.value;
-    todoList.push({name,duedate});
 
-    localStorage.setItem('todoList',JSON.stringify(todoList));
-
-    console.log(todoList);
-    inputElementName.value = '';
-    inputElementDuedate.value = 'dd-mm-yyyy';
-    dispList();
+    if (name.trim() !== '') {
+        todoList.push({ name, duedate });
+        inputElementName.value = '';
+        inputElementDuedate.value = '';
+        dispList();
+    }
 }
 
-function dispList()
-{
+function dispList() {
     let disp = ``;
-    for (let i=0; i<todoList.length; i++)
-    {
+    for (let i = 0; i < todoList.length; i++) {
         disp += `
             <div>${todoList[i].name}</div> 
             <div>${todoList[i].duedate}</div>
@@ -33,11 +29,7 @@ function dispList()
     document.querySelector('.js-todo-list').innerHTML = disp;
 }
 
-function deleteTodo(i)
-{
-    todoList.splice(i,1);
-
-    localStorage.setItem('todoList',JSON.stringify(todoList));
-
+function deleteTodo(i) {
+    todoList.splice(i, 1);
     dispList();
 }
