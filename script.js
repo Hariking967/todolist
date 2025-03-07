@@ -3,9 +3,8 @@ dispList();
 
 function addTodo() {
     const inputElementName = document.querySelector('.js-name-input');
-    const inputElementDuedate = document.querySelector('.js-due-date-input');
-
     const name = inputElementName.value.trim();
+    const inputElementDuedate = document.querySelector('.js-due-date-input');
     const duedate = inputElementDuedate.value;
 
     if (name === '') {
