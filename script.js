@@ -3,33 +3,40 @@ dispList();
 
 function addTodo() {
     const inputElementName = document.querySelector('.js-name-input');
-    const name = inputElementName.value;
     const inputElementDuedate = document.querySelector('.js-due-date-input');
+
+    const name = inputElementName.value.trim();
     const duedate = inputElementDuedate.value;
 
-    if (name.trim() !== '') {
-        todoList.push({ name, duedate });
-        inputElementName.value = '';
-        inputElementDuedate.value = '';
-        dispList();
+    if (name === '') {
+        alert("Please enter a task name.");
+        return;
     }
+
+    todoList.push({ name, duedate });
+
+    inputElementName.value = '';
+    inputElementDuedate.value = '';
+
+    dispList();
 }
 
 function dispList() {
-    let disp = ``;
-    for (let i = 0; i < todoList.length; i++) {
-        disp += `
-            <div>${todoList[i].name}</div> 
-            <div>${todoList[i].duedate}</div>
-            <button class="delete-todo-button" onclick="deleteTodo(${i});">
-                Delete
-            </button>
-            `;
-    }
-    document.querySelector('.js-todo-list').innerHTML = disp;
+    const todoContainer = document.querySelector('.js-todo-list');
+    todoContainer.innerHTML = '';
+
+    todoList.forEach((todo, index) => {
+        const todoItem = document.createElement('div');
+        todoItem.innerHTML = `
+            <div>${todo.name}</div>
+            <div>${todo.duedate}</div>
+            <button class="delete-todo-button" onclick="deleteTodo(${index});">Delete</button>
+        `;
+        todoContainer.appendChild(todoItem);
+    });
 }
 
-function deleteTodo(i) {
-    todoList.splice(i, 1);
+function deleteTodo(index) {
+    todoList.splice(index, 1);
     dispList();
 }
